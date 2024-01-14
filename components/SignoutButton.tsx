@@ -2,11 +2,10 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 export function SignoutButton() {
   const session = useSession();
-  if (!session) return null;
+  if (session.status !== "authenticated") return null;
   return (
     <Link
       href="/api/auth/signout"
