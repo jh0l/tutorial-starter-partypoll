@@ -1,0 +1,5 @@
+{
+  "eslint.validate": ["javascript"],
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2
+}

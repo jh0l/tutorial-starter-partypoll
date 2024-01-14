@@ -3,11 +3,15 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import { User } from "@/party/utils/auth";
+import Link from "next/link";
+
+const callbackUrl = process.env.NEXTAUTH_URL;
 
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 8;
 
-export default function PollMaker() {
+export default function PollMaker({ user }: { user?: User }) {
   const [newOption, setNewOption] = useState<string>("");
   const [title, setTitle] = useState("");
   const [options, setOptions] = useState<string[]>([]);
@@ -23,8 +27,8 @@ export default function PollMaker() {
   const canSubmit =
     title.length > 0 &&
     options.length >= MIN_OPTIONS &&
-    options.filter((option) => option.trim().length === 0).length === 0;
-
+    options.filter((option) => option.trim().length === 0).length === 0 &&
+    user;
   return (
     <>
       <Input
@@ -74,6 +78,27 @@ export default function PollMaker() {
       <Button type="submit" disabled={!canSubmit}>
         Create poll
       </Button>
+      {user ? (
+        <div className="bg-green-100 bg-opacity-30 text-green-700 px-4 py-3 rounded relative mt-3">
+          <span className="block text-sm">
+            You are logged in as {user.name} ({user.email}).
+          </span>
+        </div>
+      ) : (
+        <div className="bg-red-100 border border-red-400 bg-opacity-20 text-red-700 px-4 py-3 rounded-lg relative mt-3">
+          <Link
+            className="underline"
+            href={`/api/auth/signin?callbackUrl=${
+              callbackUrl || window.location.href
+            }`}
+          >
+            Sign in
+          </Link>
+          <span className="block text-sm">
+            You must be logged in to create a poll.
+          </span>
+        </div>
+      )}
     </>
   );
 }
