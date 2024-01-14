@@ -150,14 +150,14 @@ export default function PollUI({
                     height={64}
                   />
                   <div className="space-y-1">
-                    <h4 className="text-sm font-semibold">{user.username}</h4>
+                    {/* <h4 className="text-sm font-semibold">{user.username}</h4> */}
                     <p className="text-sm">{user.name}</p>
-                    <div className="flex items-center pt-2">
-                      <span className="text-xs text-muted-foreground break-all">
+                    {/* <div className="flex items-center pt-2">
+                      <span className="text-xs text-muted-foreground break-all blur-sm">
                         {user.email}
                       </span>
-                    </div>
-                    {user.option !== undefined ? (
+                    </div> */}
+                    {/* {user.option !== undefined ? (
                       <span className="text-xs">
                         voted for{" "}
                         <span className="bg-blue-100 shadow-inner px-2 rounded">
@@ -166,7 +166,10 @@ export default function PollUI({
                       </span>
                     ) : (
                       <p className="text-xs">has not voted</p>
-                    )}
+                    )} */}
+                    <span className="text-xs text-muted-foreground break-all blur-sm">
+                      haha this information is secret 😎
+                    </span>
                   </div>
                 </div>
               </HoverCardContent>
