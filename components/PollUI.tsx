@@ -189,7 +189,7 @@ export default function PollUI({
             Sign in
           </Link>
           <span className="block text-sm">
-            You must be logged in to create a poll.
+            You must be logged in to complete this poll.
           </span>
         </div>
       )}
